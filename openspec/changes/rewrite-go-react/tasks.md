@@ -90,7 +90,7 @@
   - [ ] 3.3.5c dailyResetMode 与 dailyResetTime（每日限额重置模式）
 
 ### 3.4 MessageRepository（消息日志）
-- [ ] 3.4.1 消息基础结构与接口定义
+- [x] 3.4.1 消息基础结构与接口定义
 - [ ] 3.4.2 消息 Create/BatchCreate 实现
 - [ ] 3.4.3 消息查询（按会话/用户筛选）
 
