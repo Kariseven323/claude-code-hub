@@ -28,7 +28,7 @@
   - [x] 2.2.2b 日志相关查询（message_request）
   - [x] 2.2.2c 统计与聚合查询（leaderboard, overview, statistics）
   - [x] 2.2.2d 配置与系统查询（system_settings, notification_settings, error_rules, sensitive_words, request_filters, model_prices）
-- [ ] 2.2.3 生成 sqlc 代码
+- [x] 2.2.3 生成 sqlc 代码
 - [ ] 2.2.4 编写 golang-migrate 迁移文件
   - [ ] 2.2.4a 核心表迁移（users, keys, providers）
   - [ ] 2.2.4b 日志表迁移（message_request）
