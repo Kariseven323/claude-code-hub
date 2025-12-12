@@ -29,12 +29,12 @@
   - [x] 2.2.2c 统计与聚合查询（leaderboard, overview, statistics）
   - [x] 2.2.2d 配置与系统查询（system_settings, notification_settings, error_rules, sensitive_words, request_filters, model_prices）
 - [x] 2.2.3 生成 sqlc 代码
-- [ ] 2.2.4 编写 golang-migrate 迁移文件
-  - [ ] 2.2.4a 核心表迁移（users, keys, providers）
-  - [ ] 2.2.4b 日志表迁移（message_request）
-  - [ ] 2.2.4c 配置表迁移（system_settings, notification_settings, error_rules, sensitive_words）
-  - [ ] 2.2.4d 其他表迁移（model_prices）
-  - [ ] 2.2.4e 请求过滤表迁移（request_filters）
+- [x] 2.2.4 编写 golang-migrate 迁移文件
+  - [x] 2.2.4a 核心表迁移（users, keys, providers）
+  - [x] 2.2.4b 日志表迁移（message_request）
+  - [x] 2.2.4c 配置表迁移（system_settings, notification_settings, error_rules, sensitive_words）
+  - [x] 2.2.4d 其他表迁移（model_prices）
+  - [x] 2.2.4e 请求过滤表迁移（request_filters）
   <!-- 注：client_versions 功能通过 message_request.user_agent 字段提取统计，无需独立表 -->
 
 ### 2.3 Redis
