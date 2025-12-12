@@ -10,7 +10,7 @@
 ## 2. 后端基础设施
 
 ### 2.1 配置管理
-- [ ] 2.1.1 实现 Viper 配置加载
+- [x] 2.1.1 实现 Viper 配置加载
 - [ ] 2.1.2 定义环境变量 schema（与 .env.example 1:1 对应）
   - [ ] 2.1.2a 核心配置（ADMIN_TOKEN、DSN、APP_PORT、APP_URL）
   - [ ] 2.1.2b Redis 配置（REDIS_URL、ENABLE_RATE_LIMIT、SESSION_TTL、STORE_SESSION_MESSAGES）
