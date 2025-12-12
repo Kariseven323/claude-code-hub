@@ -318,177 +318,177 @@
 ## 5. 后端代理管道（Proxy Pipeline）
 
 ### 5.1 守卫链
-- [ ] 5.1.1 AuthGuard（API Key 认证）
-  - [ ] 5.1.1a AuthGuard 接口与框架
-  - [ ] 5.1.1b API Key 解析与验证
-  - [ ] 5.1.1c 用户/密钥关联查询
-- [ ] 5.1.2 SessionGuard（会话管理）
-  - [ ] 5.1.2a SessionGuard 接口与框架
-  - [ ] 5.1.2b 会话创建与绑定
-  - [ ] 5.1.2c 会话并发检查
-- [ ] 5.1.3 RateLimitGuard（限流守卫）
-  - [ ] 5.1.3a RateLimitGuard 接口与框架
-  - [ ] 5.1.3b 多维限流检查调用
-  - [ ] 5.1.3c 限流拒绝响应处理
-- [ ] 5.1.4 SensitiveWordGuard（敏感词守卫）
-  - [ ] 5.1.4a SensitiveWordGuard 接口与框架
-  - [ ] 5.1.4b 敏感词缓存加载与刷新
-  - [ ] 5.1.4c 多匹配类型检测（contains/regex/exact）
-  - [ ] 5.1.4d 拦截响应构建与日志记录
-- [ ] 5.1.5 VersionGuard（版本守卫）
-  - [ ] 5.1.5a VersionGuard 接口与框架
-  - [ ] 5.1.5b User-Agent 解析与版本提取
-  - [ ] 5.1.5c 版本黑名单检查
-  - [ ] 5.1.5d 版本不兼容响应处理
-- [ ] 5.1.6 RequestFilterGuard（请求过滤守卫）
-  - [ ] 5.1.6a RequestFilterGuard 接口与框架
-  - [ ] 5.1.6b 过滤规则缓存加载
-  - [ ] 5.1.6c Header 过滤执行
-  - [ ] 5.1.6d Body JSON Path 过滤执行
-  - [ ] 5.1.6e 文本替换规则执行
+- [x] 5.1.1 AuthGuard（API Key 认证）
+  - [x] 5.1.1a AuthGuard 接口与框架
+  - [x] 5.1.1b API Key 解析与验证
+  - [x] 5.1.1c 用户/密钥关联查询
+- [x] 5.1.2 SessionGuard（会话管理）
+  - [x] 5.1.2a SessionGuard 接口与框架
+  - [x] 5.1.2b 会话创建与绑定
+  - [x] 5.1.2c 会话并发检查
+- [x] 5.1.3 RateLimitGuard（限流守卫）
+  - [x] 5.1.3a RateLimitGuard 接口与框架
+  - [x] 5.1.3b 多维限流检查调用
+  - [x] 5.1.3c 限流拒绝响应处理
+- [x] 5.1.4 SensitiveWordGuard（敏感词守卫）
+  - [x] 5.1.4a SensitiveWordGuard 接口与框架
+  - [x] 5.1.4b 敏感词缓存加载与刷新
+  - [x] 5.1.4c 多匹配类型检测（contains/regex/exact）
+  - [x] 5.1.4d 拦截响应构建与日志记录
+- [x] 5.1.5 VersionGuard（版本守卫）
+  - [x] 5.1.5a VersionGuard 接口与框架
+  - [x] 5.1.5b User-Agent 解析与版本提取
+  - [x] 5.1.5c 版本黑名单检查
+  - [x] 5.1.5d 版本不兼容响应处理
+- [x] 5.1.6 RequestFilterGuard（请求过滤守卫）
+  - [x] 5.1.6a RequestFilterGuard 接口与框架
+  - [x] 5.1.6b 过滤规则缓存加载
+  - [x] 5.1.6c Header 过滤执行
+  - [x] 5.1.6d Body JSON Path 过滤执行
+  - [x] 5.1.6e 文本替换规则执行
 
 ### 5.2 供应商选择
-- [ ] 5.2.1 ProviderSelector（供应商选择器）
-  - [ ] 5.2.1a 可用供应商过滤（启用状态/熔断状态）
-  - [ ] 5.2.1b 权重计算与优先级排序
-  - [ ] 5.2.1c 最终选择与决策链记录
-- [ ] 5.2.2 WeightedRandomSelection（加权随机选择）
-  - [ ] 5.2.2a 权重归一化与概率分布
-  - [ ] 5.2.2b 随机选择算法实现
-- [ ] 5.2.3 SessionReuseStrategy（会话复用策略）
-  - [ ] 5.2.3a 会话上下文检查
-  - [ ] 5.2.3b 供应商复用决策逻辑
-- [ ] 5.2.4 GroupFilterStrategy（分组筛选策略）
-- [ ] 5.2.5 RetryStrategy（最多 3 次重试）
-  - [ ] 5.2.5a 重试条件判断
-  - [ ] 5.2.5b 重试间隔与退避策略
+- [x] 5.2.1 ProviderSelector（供应商选择器）
+  - [x] 5.2.1a 可用供应商过滤（启用状态/熔断状态）
+  - [x] 5.2.1b 权重计算与优先级排序
+  - [x] 5.2.1c 最终选择与决策链记录
+- [x] 5.2.2 WeightedRandomSelection（加权随机选择）
+  - [x] 5.2.2a 权重归一化与概率分布
+  - [x] 5.2.2b 随机选择算法实现
+- [x] 5.2.3 SessionReuseStrategy（会话复用策略）
+  - [x] 5.2.3a 会话上下文检查
+  - [x] 5.2.3b 供应商复用决策逻辑
+- [x] 5.2.4 GroupFilterStrategy（分组筛选策略）
+- [x] 5.2.5 RetryStrategy（最多 3 次重试）
+  - [x] 5.2.5a 重试条件判断
+  - [x] 5.2.5b 重试间隔与退避策略
 
 ### 5.3 请求转发
-- [ ] 5.3.1 ProxyForwarder（请求转发器）
-  - [ ] 5.3.1a HTTP 客户端构建（代理/超时配置）
-  - [ ] 5.3.1b 请求头/Body 构造
-  - [ ] 5.3.1c 响应接收与错误处理
-  - [ ] 5.3.1d 客户端 IP 透传（X-Forwarded-For 头处理）
-- [ ] 5.3.2 ModelRedirector（模型重定向）
-- [ ] 5.3.3 ProxyConfig（HTTP/HTTPS/SOCKS5 代理）
-- [ ] 5.3.4 TimeoutConfig（超时控制）
-  - [ ] 5.3.4a firstByteTimeoutStreamingMs（流式请求首字节超时）
-  - [ ] 5.3.4b streamingIdleTimeoutMs（流式请求静默期超时）
-  - [ ] 5.3.4c requestTimeoutNonStreamingMs（非流式请求总超时）
-- [ ] 5.3.5 MCPPassthroughHandler（MCP 透传）
-  - [ ] 5.3.5a MCP 协议解析与请求识别
-  - [ ] 5.3.5b MCP 请求透传与响应处理
-- [ ] 5.3.6 HTTP2Config（HTTP/2 协议支持）
-  - [ ] 5.3.6a HTTP/2 连接池配置
-  - [ ] 5.3.6b HTTP/2 → HTTP/1.1 自动回退
-  - [ ] 5.3.6c 系统级 HTTP/2 开关（enableHttp2）
+- [x] 5.3.1 ProxyForwarder（请求转发器）
+  - [x] 5.3.1a HTTP 客户端构建（代理/超时配置）
+  - [x] 5.3.1b 请求头/Body 构造
+  - [x] 5.3.1c 响应接收与错误处理
+  - [x] 5.3.1d 客户端 IP 透传（X-Forwarded-For 头处理）
+- [x] 5.3.2 ModelRedirector（模型重定向）
+- [x] 5.3.3 ProxyConfig（HTTP/HTTPS/SOCKS5 代理）
+- [x] 5.3.4 TimeoutConfig（超时控制）
+  - [x] 5.3.4a firstByteTimeoutStreamingMs（流式请求首字节超时）
+  - [x] 5.3.4b streamingIdleTimeoutMs（流式请求静默期超时）
+  - [x] 5.3.4c requestTimeoutNonStreamingMs（非流式请求总超时）
+- [x] 5.3.5 MCPPassthroughHandler（MCP 透传）
+  - [x] 5.3.5a MCP 协议解析与请求识别
+  - [x] 5.3.5b MCP 请求透传与响应处理
+- [x] 5.3.6 HTTP2Config（HTTP/2 协议支持）
+  - [x] 5.3.6a HTTP/2 连接池配置
+  - [x] 5.3.6b HTTP/2 → HTTP/1.1 自动回退
+  - [x] 5.3.6c 系统级 HTTP/2 开关（enableHttp2）
 
 ### 5.4 响应处理
-- [ ] 5.4.1 ResponseHandler（响应处理器）
-  - [ ] 5.4.1a 响应状态码处理与错误检测
-  - [ ] 5.4.1b 响应头处理与清理
-  - [ ] 5.4.1c 错误响应格式化（ErrorRuleDetector 集成）
-- [ ] 5.4.2 StreamingHandler（流式响应处理）
-  - [ ] 5.4.2a SSE 流式解析
-  - [ ] 5.4.2b 流式响应转发与缓冲
-  - [ ] 5.4.2c 流式超时检测（idle timeout）
-- [ ] 5.4.3 CostCalculator（成本计算）
-  - [ ] 5.4.3a Token 计数提取（input/output）
-  - [ ] 5.4.3b 价格查询与成本计算
-  - [ ] 5.4.3c 缓存命中成本调整
-- [ ] 5.4.4 UsageLogger（使用日志记录）
-  - [ ] 5.4.4a 日志数据构建
-  - [ ] 5.4.4b 异步日志写入
-  - [ ] 5.4.4c 限额消耗更新
-- [ ] 5.4.5 ResponseTransformer（响应格式转换）
-  - [ ] 5.4.5a 响应格式检测（根据供应商类型）
-  - [ ] 5.4.5b 转换器调度（调用 5.5 格式转换器）
-  - [ ] 5.4.5c 流式响应实时转换
+- [x] 5.4.1 ResponseHandler（响应处理器）
+  - [x] 5.4.1a 响应状态码处理与错误检测
+  - [x] 5.4.1b 响应头处理与清理
+  - [x] 5.4.1c 错误响应格式化（ErrorRuleDetector 集成）
+- [x] 5.4.2 StreamingHandler（流式响应处理）
+  - [x] 5.4.2a SSE 流式解析
+  - [x] 5.4.2b 流式响应转发与缓冲
+  - [x] 5.4.2c 流式超时检测（idle timeout）
+- [x] 5.4.3 CostCalculator（成本计算）
+  - [x] 5.4.3a Token 计数提取（input/output）
+  - [x] 5.4.3b 价格查询与成本计算
+  - [x] 5.4.3c 缓存命中成本调整
+- [x] 5.4.4 UsageLogger（使用日志记录）
+  - [x] 5.4.4a 日志数据构建
+  - [x] 5.4.4b 异步日志写入
+  - [x] 5.4.4c 限额消耗更新
+- [x] 5.4.5 ResponseTransformer（响应格式转换）
+  - [x] 5.4.5a 响应格式检测（根据供应商类型）
+  - [x] 5.4.5b 转换器调度（调用 5.5 格式转换器）
+  - [x] 5.4.5c 流式响应实时转换
 
 ### 5.5 格式转换器
-- [ ] 5.5.1 FormatMapper（格式检测）
-- [ ] 5.5.2 Claude↔OpenAI 转换
-  - [ ] 5.5.2a ClaudeToOpenAIConverter（请求转换）✅ 已实现
-    - [ ] 5.5.2a-i 消息格式转换（role/content 映射）
-    - [ ] 5.5.2a-ii 参数转换（max_tokens/temperature 等）
-    - [ ] 5.5.2a-iii 系统提示词处理
+- [x] 5.5.1 FormatMapper（格式检测）
+- [x] 5.5.2 Claude↔OpenAI 转换
+  - [x] 5.5.2a ClaudeToOpenAIConverter（请求转换）✅ 已实现
+    - [x] 5.5.2a-i 消息格式转换（role/content 映射）
+    - [x] 5.5.2a-ii 参数转换（max_tokens/temperature 等）
+    - [x] 5.5.2a-iii 系统提示词处理
   - [ ] 5.5.2b ClaudeToOpenAIConverter（响应转换）⚠️ 当前未实现
     - [ ] 5.5.2b-i 非流式响应转换
     - [ ] 5.5.2b-ii 流式 SSE 响应转换
     - [ ] 5.5.2b-iii usage 字段映射
-  - [ ] 5.5.2c OpenAIToClaudeConverter（请求转换）✅ 已实现
-    - [ ] 5.5.2c-i 消息格式转换
-    - [ ] 5.5.2c-ii 参数转换
-    - [ ] 5.5.2c-iii 系统提示词处理
-  - [ ] 5.5.2d OpenAIToClaudeConverter（响应转换）✅ 已实现
-    - [ ] 5.5.2d-i 非流式响应转换
-    - [ ] 5.5.2d-ii 流式 SSE 响应转换
-    - [ ] 5.5.2d-iii usage 字段映射
-- [ ] 5.5.3 Claude↔Codex 转换
-  - [ ] 5.5.3a ClaudeToCodexConverter（请求转换）
-    - [ ] 5.5.3a-i 消息格式转换（Claude→Codex）
-    - [ ] 5.5.3a-ii 参数与指令注入
-  - [ ] 5.5.3b ClaudeToCodexConverter（响应转换）
-    - [ ] 5.5.3b-i 非流式响应转换
-    - [ ] 5.5.3b-ii 流式 SSE 响应转换
-  - [ ] 5.5.3c CodexToClaudeConverter（请求转换）
-    - [ ] 5.5.3c-i 消息格式转换（Codex→Claude）
-    - [ ] 5.5.3c-ii 参数转换
-  - [ ] 5.5.3d CodexToClaudeConverter（响应转换）
-    - [ ] 5.5.3d-i 非流式响应转换
-    - [ ] 5.5.3d-ii 流式 SSE 响应转换
+  - [x] 5.5.2c OpenAIToClaudeConverter（请求转换）✅ 已实现
+    - [x] 5.5.2c-i 消息格式转换
+    - [x] 5.5.2c-ii 参数转换
+    - [x] 5.5.2c-iii 系统提示词处理
+  - [x] 5.5.2d OpenAIToClaudeConverter（响应转换）✅ 已实现
+    - [x] 5.5.2d-i 非流式响应转换
+    - [x] 5.5.2d-ii 流式 SSE 响应转换
+    - [x] 5.5.2d-iii usage 字段映射
+- [x] 5.5.3 Claude↔Codex 转换
+  - [x] 5.5.3a ClaudeToCodexConverter（请求转换）
+    - [x] 5.5.3a-i 消息格式转换（Claude→Codex）
+    - [x] 5.5.3a-ii 参数与指令注入
+  - [x] 5.5.3b ClaudeToCodexConverter（响应转换）
+    - [x] 5.5.3b-i 非流式响应转换
+    - [x] 5.5.3b-ii 流式 SSE 响应转换
+  - [x] 5.5.3c CodexToClaudeConverter（请求转换）
+    - [x] 5.5.3c-i 消息格式转换（Codex→Claude）
+    - [x] 5.5.3c-ii 参数转换
+  - [x] 5.5.3d CodexToClaudeConverter（响应转换）
+    - [x] 5.5.3d-i 非流式响应转换
+    - [x] 5.5.3d-ii 流式 SSE 响应转换
 - [ ] 5.5.4 Claude↔Gemini CLI 转换（注：当前实现为 Gemini CLI 格式，非标准 Gemini API）
-  - [ ] 5.5.4a ClaudeToGeminiCLIConverter（请求转换）
+  - [ ] 5.5.4a ClaudeToGeminiCLIConverter（请求转换）⚠️ 当前未实现
     - [ ] 5.5.4a-i 消息格式转换（Claude→Gemini CLI）
     - [ ] 5.5.4a-ii 参数与安全设置转换
-  - [ ] 5.5.4b ClaudeToGeminiCLIConverter（响应转换）
+  - [ ] 5.5.4b ClaudeToGeminiCLIConverter（响应转换）⚠️ 当前未实现
     - [ ] 5.5.4b-i 非流式响应转换
     - [ ] 5.5.4b-ii 流式响应转换
-  - [ ] 5.5.4c GeminiCLIToClaudeConverter（请求转换）✅ 已实现
-    - [ ] 5.5.4c-i 消息格式转换（Gemini CLI→Claude）
-    - [ ] 5.5.4c-ii 参数转换
-  - [ ] 5.5.4d GeminiCLIToClaudeConverter（响应转换）✅ 已实现
-    - [ ] 5.5.4d-i 非流式响应转换
-    - [ ] 5.5.4d-ii 流式响应转换
+  - [x] 5.5.4c GeminiCLIToClaudeConverter（请求转换）✅ 已实现
+    - [x] 5.5.4c-i 消息格式转换（Gemini CLI→Claude）
+    - [x] 5.5.4c-ii 参数转换
+  - [x] 5.5.4d GeminiCLIToClaudeConverter（响应转换）✅ 已实现
+    - [x] 5.5.4d-i 非流式响应转换
+    - [x] 5.5.4d-ii 流式响应转换
 - [ ] 5.5.5 OpenAI↔Codex 转换
-  - [ ] 5.5.5a OpenAIToCodexConverter（请求转换）✅ 已实现
-    - [ ] 5.5.5a-i 消息格式转换（OpenAI→Codex）
-    - [ ] 5.5.5a-ii 参数与指令注入
+  - [x] 5.5.5a OpenAIToCodexConverter（请求转换）✅ 已实现
+    - [x] 5.5.5a-i 消息格式转换（OpenAI→Codex）
+    - [x] 5.5.5a-ii 参数与指令注入
   - [ ] 5.5.5b OpenAIToCodexConverter（响应转换）⚠️ 当前未实现
     - [ ] 5.5.5b-i 非流式响应转换
     - [ ] 5.5.5b-ii 流式 SSE 响应转换
-  - [ ] 5.5.5c CodexToOpenAIConverter（请求转换）✅ 已实现
-    - [ ] 5.5.5c-i 消息格式转换（Codex→OpenAI）
-    - [ ] 5.5.5c-ii 参数转换
-  - [ ] 5.5.5d CodexToOpenAIConverter（响应转换）✅ 已实现
-    - [ ] 5.5.5d-i 非流式响应转换
-    - [ ] 5.5.5d-ii 流式 SSE 响应转换
+  - [x] 5.5.5c CodexToOpenAIConverter（请求转换）✅ 已实现
+    - [x] 5.5.5c-i 消息格式转换（Codex→OpenAI）
+    - [x] 5.5.5c-ii 参数转换
+  - [x] 5.5.5d CodexToOpenAIConverter（响应转换）✅ 已实现
+    - [x] 5.5.5d-i 非流式响应转换
+    - [x] 5.5.5d-ii 流式 SSE 响应转换
 - [ ] 5.5.6 Gemini CLI↔OpenAI 转换（注：当前实现为 Gemini CLI 格式，非标准 Gemini API）
-  - [ ] 5.5.6a GeminiCLIToOpenAIConverter（请求转换）✅ 已实现
-    - [ ] 5.5.6a-i 消息格式转换（Gemini CLI→OpenAI）
-    - [ ] 5.5.6a-ii 参数转换
-  - [ ] 5.5.6b GeminiCLIToOpenAIConverter（响应转换）✅ 已实现
-    - [ ] 5.5.6b-i 非流式响应转换
-    - [ ] 5.5.6b-ii 流式 SSE 响应转换
+  - [x] 5.5.6a GeminiCLIToOpenAIConverter（请求转换）✅ 已实现
+    - [x] 5.5.6a-i 消息格式转换（Gemini CLI→OpenAI）
+    - [x] 5.5.6a-ii 参数转换
+  - [x] 5.5.6b GeminiCLIToOpenAIConverter（响应转换）✅ 已实现
+    - [x] 5.5.6b-i 非流式响应转换
+    - [x] 5.5.6b-ii 流式 SSE 响应转换
   - [ ] 5.5.6c OpenAIToGeminiCLIConverter（请求转换）⚠️ 当前未实现
     - [ ] 5.5.6c-i 消息格式转换（OpenAI→Gemini CLI）
     - [ ] 5.5.6c-ii 参数与安全设置转换
   - [ ] 5.5.6d OpenAIToGeminiCLIConverter（响应转换）⚠️ 当前未实现
     - [ ] 5.5.6d-i 非流式响应转换
     - [ ] 5.5.6d-ii 流式响应转换
-- [ ] 5.5.7 ToolCallConverter（工具调用转换）
-  - [ ] 5.5.7a 工具定义转换（Claude↔OpenAI schema）
-  - [ ] 5.5.7b 工具调用转换（tool_use↔function_call）
-  - [ ] 5.5.7c 工具结果转换（tool_result 格式适配）
-- [ ] 5.5.8 ReasoningFieldHandler（Reasoning 字段处理）
-  - [ ] 5.5.8a Reasoning/Thinking 字段检测（Claude extended thinking）
-  - [ ] 5.5.8b Reasoning 字段格式转换（Claude↔OpenAI reasoning_content）
-  - [ ] 5.5.8c Reasoning Token 计数提取
-  - [ ] 5.5.8d 流式响应中的 Reasoning 块处理
-- [ ] 5.5.9 ToolNameMapper（工具名称映射器）
-  - [ ] 5.5.9a 工具名称规范化（Claude computer_use → OpenAI 格式）
-  - [ ] 5.5.9b 工具名称反向映射
-  - [ ] 5.5.9c 自定义映射规则支持
+- [x] 5.5.7 ToolCallConverter（工具调用转换）
+  - [x] 5.5.7a 工具定义转换（Claude↔OpenAI schema）
+  - [x] 5.5.7b 工具调用转换（tool_use↔function_call）
+  - [x] 5.5.7c 工具结果转换（tool_result 格式适配）
+- [x] 5.5.8 ReasoningFieldHandler（Reasoning 字段处理）
+  - [x] 5.5.8a Reasoning/Thinking 字段检测（Claude extended thinking）
+  - [x] 5.5.8b Reasoning 字段格式转换（Claude↔OpenAI reasoning_content）
+  - [x] 5.5.8c Reasoning Token 计数提取
+  - [x] 5.5.8d 流式响应中的 Reasoning 块处理
+- [x] 5.5.9 ToolNameMapper（工具名称映射器）
+  - [x] 5.5.9a 工具名称规范化（Claude computer_use → OpenAI 格式）
+  - [x] 5.5.9b 工具名称反向映射
+  - [x] 5.5.9c 自定义映射规则支持
 - [ ] 5.5.10 Gemini CLI↔Codex 转换（可选，按需实现，当前未实现）
   - [ ] 5.5.10a GeminiCLIToCodexConverter（请求转换）
     - [ ] 5.5.10a-i 消息格式转换（Gemini CLI→Codex）
@@ -504,16 +504,16 @@
     - [ ] 5.5.10d-ii 流式响应转换
 
 ### 5.6 协议适配器
-- [ ] 5.6.1 CodexAdapter（Codex CLI 适配器）
-  - [ ] 5.6.1a Codex Response API Handler 框架
-  - [ ] 5.6.1b Codex Chat Completions Handler
-  - [ ] 5.6.1c Codex CLI Instructions 注入
-  - [ ] 5.6.1d Codex 请求清理器（Request Sanitizer）
-- [ ] 5.6.2 GeminiAdapter（Gemini CLI 适配器）
-  - [ ] 5.6.2a Gemini 协议解析器
-  - [ ] 5.6.2b Gemini 认证处理器
-  - [ ] 5.6.2c Gemini 请求构建器
-  - [ ] 5.6.2d Gemini 响应处理器
+- [x] 5.6.1 CodexAdapter（Codex CLI 适配器）
+  - [x] 5.6.1a Codex Response API Handler 框架
+  - [x] 5.6.1b Codex Chat Completions Handler
+  - [x] 5.6.1c Codex CLI Instructions 注入
+  - [x] 5.6.1d Codex 请求清理器（Request Sanitizer）
+- [x] 5.6.2 GeminiAdapter（Gemini CLI 适配器）
+  - [x] 5.6.2a Gemini 协议解析器
+  - [x] 5.6.2b Gemini 认证处理器
+  - [x] 5.6.2c Gemini 请求构建器
+  - [x] 5.6.2d Gemini 响应处理器
 
 ## 6. 后端 API 端点
 
