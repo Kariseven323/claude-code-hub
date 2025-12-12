@@ -19,15 +19,15 @@
   - [x] 2.1.2e Cookie 安全配置（ENABLE_SECURE_COOKIES）
   - [x] 2.1.2f API 测试配置（API_TEST_TIMEOUT_MS）
   - [x] 2.1.2g 多供应商类型配置（ENABLE_MULTI_PROVIDER_TYPES）
-- [ ] 2.1.3 实现配置验证
+- [x] 2.1.3 实现配置验证
 
 ### 2.2 数据库
-- [ ] 2.2.1 配置 pgx 连接池
-- [ ] 2.2.2 编写 sqlc 查询文件
-  - [ ] 2.2.2a 核心实体查询（users, keys, providers）
-  - [ ] 2.2.2b 日志相关查询（message_request）
-  - [ ] 2.2.2c 统计与聚合查询（leaderboard, overview, statistics）
-  - [ ] 2.2.2d 配置与系统查询（system_settings, notification_settings, error_rules, sensitive_words, request_filters, model_prices）
+- [x] 2.2.1 配置 pgx 连接池
+- [x] 2.2.2 编写 sqlc 查询文件
+  - [x] 2.2.2a 核心实体查询（users, keys, providers）
+  - [x] 2.2.2b 日志相关查询（message_request）
+  - [x] 2.2.2c 统计与聚合查询（leaderboard, overview, statistics）
+  - [x] 2.2.2d 配置与系统查询（system_settings, notification_settings, error_rules, sensitive_words, request_filters, model_prices）
 - [ ] 2.2.3 生成 sqlc 代码
 - [ ] 2.2.4 编写 golang-migrate 迁移文件
   - [ ] 2.2.4a 核心表迁移（users, keys, providers）
