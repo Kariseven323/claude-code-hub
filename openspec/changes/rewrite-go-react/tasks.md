@@ -38,13 +38,13 @@
   <!-- 注：client_versions 功能通过 message_request.user_agent 字段提取统计，无需独立表 -->
 
 ### 2.3 Redis
-- [ ] 2.3.1 配置 go-redis 客户端
-- [ ] 2.3.2 实现 Lua 脚本加载器
-- [ ] 2.3.3 移植所有 Lua 脚本
-  - [ ] 2.3.3a 限流相关 Lua 脚本（RPM、金额、并发）
-  - [ ] 2.3.3b 会话管理 Lua 脚本
-  - [ ] 2.3.3c 熔断器 Lua 脚本
-  - [ ] 2.3.3d Lua 脚本外部化（从内嵌字符串抽取为独立 .lua 文件）
+- [x] 2.3.1 配置 go-redis 客户端
+- [x] 2.3.2 实现 Lua 脚本加载器
+- [x] 2.3.3 移植所有 Lua 脚本
+  - [x] 2.3.3a 限流相关 Lua 脚本（RPM、金额、并发）
+  - [x] 2.3.3b 会话管理 Lua 脚本
+  - [x] 2.3.3c 熔断器 Lua 脚本
+  - [x] 2.3.3d Lua 脚本外部化（从内嵌字符串抽取为独立 .lua 文件）
 - [ ] 2.3.4 实现 Redis 缓存层
   - [ ] 2.3.4a LeaderboardCache（排行榜缓存）
   - [ ] 2.3.4b SessionStatsCache（会话统计缓存）
