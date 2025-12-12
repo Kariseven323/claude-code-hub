@@ -2,10 +2,10 @@
 
 ## 1. 项目初始化
 
-- [ ] 1.1 创建 KarisCode 目录结构
-- [ ] 1.2 初始化 Go 模块 (backend/)
-- [ ] 1.3 初始化 React 项目 (frontend/)
-- [ ] 1.4 配置 Makefile（dev/build/clean 命令）
+- [x] 1.1 创建 KarisCode 目录结构
+- [x] 1.2 初始化 Go 模块 (backend/)
+- [x] 1.3 初始化 React 项目 (frontend/)
+- [x] 1.4 配置 Makefile（dev/build/clean 命令）
 
 ## 2. 后端基础设施
 
