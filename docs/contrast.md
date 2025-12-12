@@ -328,3 +328,47 @@
 
 - system_settings 仓库（get/insert default/update）：`KarisCode/backend/internal/repository/system_config_repository.go:10`
 - system_settings TTL cache + fail-open fallback：`KarisCode/backend/internal/service/systemsettings/system_settings_cache.go:17`
+
+## `src/actions/types.ts`
+
+**缺少的内容（KarisCode 未 1:1 实现/未接入）**
+
+- **统一 ActionResult 返回契约未复刻为 REST 统一响应**：原项目所有 actions 依赖 `ActionResult`（`src/actions/types.ts:31`），并承诺统一 `ok/data` 或 `ok/error/errorCode/errorParams`；KarisCode 目前未建立统一的 REST JSON envelope（成功/失败形状、错误码字段、参数字段），只能算“内部结构各自为政”。
+- **错误码/i18n 参数语义未落地**：原类型明确支持 `errorCode/errorParams`（`src/actions/types.ts:24`），并在 users/keys 等动作中被依赖；KarisCode 侧目前没有等价的全局错误码表与对外返回协议。
+
+**KarisCode 中已存在但“未串起来”的相关实现（不等于完成 1:1）**
+
+- 内部 service 里存在大量局部 `*Result` 结构（但不构成统一对外 contract）：`KarisCode/backend/internal/service/ratelimit/service.go:29`
+
+## `src/actions/usage-logs.ts`
+
+**缺少的内容（KarisCode 未 1:1 实现/未接入）**
+
+- **REST API 未落地**：原文件提供查询/导出/筛选器数据的 server actions（`src/actions/usage-logs.ts:19` / `src/actions/usage-logs.ts:45` / `src/actions/usage-logs.ts:149`）；KarisCode 启动入口目前只注册了 `/health` 与 `/api/version`，未提供任何 usage logs 相关路由（`KarisCode/backend/cmd/server/main.go:41` / `KarisCode/backend/cmd/server/main.go:48`）。
+- **权限裁剪语义未复刻（admin vs user 强制 userId）**：原实现对非管理员强制注入 `userId=session.user.id`（`src/actions/usage-logs.ts:28` / `src/actions/usage-logs.ts:54`）；KarisCode 缺少等价的 handler/service 在入口层面做“强制过滤”，否则容易把“全站日志”暴露给普通用户。
+- **CSV 导出与安全策略缺失**：原导出包含 UTF-8 BOM、字段 escape、以及 CSV 公式注入防护（`src/actions/usage-logs.ts:76` / `src/actions/usage-logs.ts:132`）；KarisCode 目前没有等价的 CSV 导出实现与安全处理。
+- **keyId → keyString 的查询语义未接入**：原查询允许按 `keyId` 过滤并在 repository 层先查出 key string（`src/repository/usage-logs.ts:72`）；KarisCode usage_logs 查询以 `key_string` 作为过滤参数（`KarisCode/backend/sqlc/queries/usage_logs.sql:37` / `KarisCode/backend/sqlc/queries/usage_logs.sql:90`），但缺少对外接口把 `keyId` 映射为 key string（可用 `GetKeyStringByID`，但目前未串起来）。
+
+**KarisCode 中已存在但“未串起来”的相关实现（不等于完成 1:1）**
+
+- usage logs sqlc 查询（含 summary/details + 模型/端点/状态码列表）：`KarisCode/backend/sqlc/queries/usage_logs.sql:24`
+- usage log repository（只读查询封装，声明上已指向 TS 语义）：`KarisCode/backend/internal/repository/usage_log_repository.go:12`
+- keys.sql 提供 `GetKeyStringByID`（支持 keyId → keyString 映射，但目前无入口调用）：`KarisCode/backend/sqlc/queries/keys.sql:90`
+
+## `src/actions/users.ts`
+
+**缺少的内容（KarisCode 未 1:1 实现/未接入）**
+
+- **REST API 未落地**：原文件提供用户管理与相关查询的 server actions（`src/actions/users.ts:67` / `src/actions/users.ts:197` / `src/actions/users.ts:373` / `src/actions/users.ts:577` / `src/actions/users.ts:605` / `src/actions/users.ts:672` / `src/actions/users.ts:753`）；KarisCode 启动入口未注册任何 users/admin 相关路由（`KarisCode/backend/cmd/server/main.go:41` / `KarisCode/backend/cmd/server/main.go:48`）。
+- **权限与字段级授权语义未复刻**：原实现包含“仅管理员可创建/删除/续期/禁用他人”“普通用户只能编辑自己”“字段级不允许修改列表”等约束（`src/actions/users.ts:241` / `src/actions/users.ts:445`）；KarisCode 当前没有等价的 handler/service 层来承载这些规则。
+- **输入校验/错误码返回契约未复刻**：原实现用 Zod 校验并返回 `errorCode/errorParams`（`src/actions/users.ts:251` / `src/actions/users.ts:268`）；KarisCode 缺少等价的输入校验与一致的错误返回结构。
+- **关键业务语义缺失**：
+  - 新用户创建“默认 key”并且“仅此一次返回明文 key”（`src/actions/users.ts:322` / `src/actions/users.ts:353`）；
+  - 用户 providerGroup 减少时级联更新 keys.providerGroup（避免 key 指向用户已移除的分组）（`src/actions/users.ts:485`）；
+  - 防止管理员禁用自己（`src/actions/users.ts:767`）。
+
+**KarisCode 中已存在但“未串起来”的相关实现（不等于完成 1:1）**
+
+- user/key 仓库基础 CRUD（sqlc 包装）：`KarisCode/backend/internal/repository/user_repository.go:10` / `KarisCode/backend/internal/repository/key_repository.go:10`
+- users/keys 核心表结构（limits/provider_group/can_login_web_ui 等字段齐备）：`KarisCode/backend/migrations/000001_core_tables.up.sql:12`
+- 开发用数据生成（可生成用户与 key，但与“管理 REST API”不是一回事）：`KarisCode/backend/internal/service/datagen/users.go:24`
