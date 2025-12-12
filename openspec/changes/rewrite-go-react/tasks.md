@@ -60,7 +60,7 @@
 ## 3. 后端数据访问层（Repository）
 
 ### 3.1 ProviderRepository（供应商）
-- [ ] 3.1.1 供应商基础结构与接口定义
+- [x] 3.1.1 供应商基础结构与接口定义
 - [ ] 3.1.2 供应商 Create/Update 实现
 - [ ] 3.1.3 供应商 Get/List/Delete 实现
 - [ ] 3.1.4 供应商状态与熔断器查询
@@ -71,9 +71,9 @@
   - [ ] 3.1.5d mcpPassthroughType 与 mcpPassthroughUrl（MCP 透传配置）
 
 ### 3.2 UserRepository（用户）
-- [ ] 3.2.1 用户基础结构与接口定义
-- [ ] 3.2.2 用户 Create/Update 实现
-- [ ] 3.2.3 用户 Get/List/Delete 实现
+- [x] 3.2.1 用户基础结构与接口定义
+- [x] 3.2.2 用户 Create/Update 实现
+- [x] 3.2.3 用户 Get/List/Delete 实现
 - [ ] 3.2.4 用户限额查询与更新
 - [ ] 3.2.5 用户标签管理
   - [ ] 3.2.5a 用户标签 CRUD（tags jsonb 字段）
