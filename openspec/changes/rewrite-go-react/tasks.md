@@ -136,184 +136,184 @@
 ## 4. 后端业务逻辑层（Service）
 
 ### 4.1 会话管理
-- [ ] 4.1.1 SessionManager（会话管理器）
-  - [ ] 4.1.1a 会话生命周期管理（创建/获取/销毁）
-  - [ ] 4.1.1b 会话状态持久化（Redis 交互）
-  - [ ] 4.1.1c 会话上下文绑定（供应商关联）
-- [ ] 4.1.2 SessionTracker（会话追踪）
-- [ ] 4.1.3 SessionCache（5 分钟缓存）
-- [ ] 4.1.4 DecisionChain（决策链记录）
+- [x] 4.1.1 SessionManager（会话管理器）
+  - [x] 4.1.1a 会话生命周期管理（创建/获取/销毁）
+  - [x] 4.1.1b 会话状态持久化（Redis 交互）
+  - [x] 4.1.1c 会话上下文绑定（供应商关联）
+- [x] 4.1.2 SessionTracker（会话追踪）
+- [x] 4.1.3 SessionCache（5 分钟缓存）
+- [x] 4.1.4 DecisionChain（决策链记录）
 
 ### 4.2 熔断器
-- [ ] 4.2.1 CircuitBreaker（三态管理：CLOSED/OPEN/HALF_OPEN）
-  - [ ] 4.2.1a 状态机定义与转换逻辑
-  - [ ] 4.2.1b 失败计数与阈值判断
-  - [ ] 4.2.1c HALF_OPEN 恢复探测
-- [ ] 4.2.2 CircuitBreakerProbe（智能探测）
-- [ ] 4.2.3 CircuitBreakerState（Redis 状态存储）
-- [ ] 4.2.4 CircuitBreakerLoader（熔断器状态加载器）
-  - [ ] 4.2.4a 启动时从 Redis 加载所有供应商熔断状态
-  - [ ] 4.2.4b 状态同步与缓存刷新
+- [x] 4.2.1 CircuitBreaker（三态管理：CLOSED/OPEN/HALF_OPEN）
+  - [x] 4.2.1a 状态机定义与转换逻辑
+  - [x] 4.2.1b 失败计数与阈值判断
+  - [x] 4.2.1c HALF_OPEN 恢复探测
+- [x] 4.2.2 CircuitBreakerProbe（智能探测）
+- [x] 4.2.3 CircuitBreakerState（Redis 状态存储）
+- [x] 4.2.4 CircuitBreakerLoader（熔断器状态加载器）
+  - [x] 4.2.4a 启动时从 Redis 加载所有供应商熔断状态
+  - [x] 4.2.4b 状态同步与缓存刷新
 
 ### 4.3 限流服务
-- [ ] 4.3.1 RateLimitService（多维限流核心框架）
-  - [ ] 4.3.1a 限流接口抽象与注册机制
-  - [ ] 4.3.1b 限流检查链执行器
-  - [ ] 4.3.1c 限流结果聚合与错误处理
-- [ ] 4.3.2 RPM 限流（每分钟请求数）
-- [ ] 4.3.3 金额限流
-  - [ ] 4.3.3a 5小时金额限流
-  - [ ] 4.3.3b 周金额限流
-  - [ ] 4.3.3c 月金额限流
-- [ ] 4.3.4 并发 Session 限流
-- [ ] 4.3.5 Fail-Open 降级策略
+- [x] 4.3.1 RateLimitService（多维限流核心框架）
+  - [x] 4.3.1a 限流接口抽象与注册机制
+  - [x] 4.3.1b 限流检查链执行器
+  - [x] 4.3.1c 限流结果聚合与错误处理
+- [x] 4.3.2 RPM 限流（每分钟请求数）
+- [x] 4.3.3 金额限流
+  - [x] 4.3.3a 5小时金额限流
+  - [x] 4.3.3b 周金额限流
+  - [x] 4.3.3c 月金额限流
+- [x] 4.3.4 并发 Session 限流
+- [x] 4.3.5 Fail-Open 降级策略
 
 ### 4.4 错误处理
-- [ ] 4.4.1 ErrorRuleDetector（错误规则检测）
-- [ ] 4.4.2 ErrorRuleCache（规则缓存）
-- [ ] 4.4.3 ErrorOverrideValidator（错误覆写验证器）
-  - [ ] 4.4.3a 覆写响应体 JSON 格式验证
-  - [ ] 4.4.3b 覆写状态码范围验证
+- [x] 4.4.1 ErrorRuleDetector（错误规则检测）
+- [x] 4.4.2 ErrorRuleCache（规则缓存）
+- [x] 4.4.3 ErrorOverrideValidator（错误覆写验证器）
+  - [x] 4.4.3a 覆写响应体 JSON 格式验证
+  - [x] 4.4.3b 覆写状态码范围验证
 
 ### 4.5 敏感词
-- [ ] 4.5.1 SensitiveWordDetector（敏感词检测）
-- [ ] 4.5.2 SensitiveWordCache（词库缓存）
+- [x] 4.5.1 SensitiveWordDetector（敏感词检测）
+- [x] 4.5.2 SensitiveWordCache（词库缓存）
 
 ### 4.6 价格同步
-- [ ] 4.6.1 PriceSync（LiteLLM 价格同步）
-  - [ ] 4.6.1a LiteLLM 数据获取与解析
-  - [ ] 4.6.1b 价格数据转换与映射
-  - [ ] 4.6.1c 批量 Upsert 与增量同步
-- [ ] 4.6.2 PriceCache（价格缓存）
-- [ ] 4.6.3 PriceSeedInitializer（价格种子数据初始化）
-  - [ ] 4.6.3a 首次启动检测（数据库为空判断）
-  - [ ] 4.6.3b 内嵌默认价格数据加载
-  - [ ] 4.6.3c 自动触发 LiteLLM 同步
+- [x] 4.6.1 PriceSync（LiteLLM 价格同步）
+  - [x] 4.6.1a LiteLLM 数据获取与解析
+  - [x] 4.6.1b 价格数据转换与映射
+  - [x] 4.6.1c 批量 Upsert 与增量同步
+- [x] 4.6.2 PriceCache（价格缓存）
+- [x] 4.6.3 PriceSeedInitializer（价格种子数据初始化）
+  - [x] 4.6.3a 首次启动检测（数据库为空判断）
+  - [x] 4.6.3b 内嵌默认价格数据加载
+  - [x] 4.6.3c 自动触发 LiteLLM 同步
 
 ### 4.7 通知服务
-- [ ] 4.7.1 NotificationService（通知服务框架）
-  - [ ] 4.7.1a 通知渠道抽象接口
-  - [ ] 4.7.1b 通知队列管理
-  - [ ] 4.7.1c 重试与降级策略
-- [ ] 4.7.2 WeChatNotifier（企业微信机器人通知）
-  - [ ] 4.7.2a Webhook 请求构建
-  - [ ] 4.7.2b 消息模板渲染（Markdown 格式）
-  - [ ] 4.7.2c 发送结果处理
-- [ ] 4.7.3 DailyLeaderboardTask（每日排行榜推送任务）
-  - [ ] 4.7.3a Cron 调度器配置（可配置推送时间）
-  - [ ] 4.7.3b 排行榜数据聚合（Top N 用户）
-  - [ ] 4.7.3c 消息格式化与推送
-- [ ] 4.7.4 CostAlertTask（成本预警任务）
-  - [ ] 4.7.4a 周期性检查调度（可配置间隔）
-  - [ ] 4.7.4b 用户限额阈值检测（80% 预警）
-  - [ ] 4.7.4c 告警消息构建与推送
-  - [ ] 4.7.4d 告警去重（避免重复推送）
-- [ ] 4.7.5 CircuitBreakerAlertTask（熔断器告警任务）
-  - [ ] 4.7.5a 熔断器状态变更监听
-  - [ ] 4.7.5b 熔断/恢复事件推送
-  - [ ] 4.7.5c 告警去重（5 分钟内同一供应商不重复告警）
-  - [ ] 4.7.5d 熔断器恢复通知（OPEN→CLOSED 状态变更）
+- [x] 4.7.1 NotificationService（通知服务框架）
+  - [x] 4.7.1a 通知渠道抽象接口
+  - [x] 4.7.1b 通知队列管理
+  - [x] 4.7.1c 重试与降级策略
+- [x] 4.7.2 WeChatNotifier（企业微信机器人通知）
+  - [x] 4.7.2a Webhook 请求构建
+  - [x] 4.7.2b 消息模板渲染（Markdown 格式）
+  - [x] 4.7.2c 发送结果处理
+- [x] 4.7.3 DailyLeaderboardTask（每日排行榜推送任务）
+  - [x] 4.7.3a Cron 调度器配置（可配置推送时间）
+  - [x] 4.7.3b 排行榜数据聚合（Top N 用户）
+  - [x] 4.7.3c 消息格式化与推送
+- [x] 4.7.4 CostAlertTask（成本预警任务）
+  - [x] 4.7.4a 周期性检查调度（可配置间隔）
+  - [x] 4.7.4b 用户限额阈值检测（80% 预警）
+  - [x] 4.7.4c 告警消息构建与推送
+  - [x] 4.7.4d 告警去重（避免重复推送）
+- [x] 4.7.5 CircuitBreakerAlertTask（熔断器告警任务）
+  - [x] 4.7.5a 熔断器状态变更监听
+  - [x] 4.7.5b 熔断/恢复事件推送
+  - [x] 4.7.5c 告警去重（5 分钟内同一供应商不重复告警）
+  - [x] 4.7.5d 熔断器恢复通知（OPEN→CLOSED 状态变更）
 
 ### 4.8 其他服务
-- [ ] 4.8.1 ClientVersionChecker（客户端版本检查）
-  - [ ] 4.8.1a 版本号解析与比较
-  - [ ] 4.8.1b 版本黑名单匹配
-  - [ ] 4.8.1c 版本状态缓存
-- [ ] 4.8.2 CodexInstructionsCache（Codex 指令缓存）
-  - [ ] 4.8.2a 官方 Codex CLI Instructions 加载
-  - [ ] 4.8.2b 指令缓存与刷新策略
-- [ ] 4.8.3 SystemSettingsCache（系统设置缓存）
-  - [ ] 4.8.3a 系统设置加载与缓存
-  - [ ] 4.8.3b 设置变更监听与刷新
+- [x] 4.8.1 ClientVersionChecker（客户端版本检查）
+  - [x] 4.8.1a 版本号解析与比较
+  - [x] 4.8.1b 版本黑名单匹配
+  - [x] 4.8.1c 版本状态缓存
+- [x] 4.8.2 CodexInstructionsCache（Codex 指令缓存）
+  - [x] 4.8.2a 官方 Codex CLI Instructions 加载
+  - [x] 4.8.2b 指令缓存与刷新策略
+- [x] 4.8.3 SystemSettingsCache（系统设置缓存）
+  - [x] 4.8.3a 系统设置加载与缓存
+  - [x] 4.8.3b 设置变更监听与刷新
 
 ### 4.9 可用性服务
-- [ ] 4.9.1 AvailabilityService（供应商可用性服务）
-  - [ ] 4.9.1a 供应商健康状态聚合
-  - [ ] 4.9.1b 实时可用性计算
-  - [ ] 4.9.1c 历史可用性趋势
-- [ ] 4.9.2 ProxyStatusTracker（代理状态追踪）
-  - [ ] 4.9.2a 代理运行时状态收集
-  - [ ] 4.9.2b 状态快照与查询接口
+- [x] 4.9.1 AvailabilityService（供应商可用性服务）
+  - [x] 4.9.1a 供应商健康状态聚合
+  - [x] 4.9.1b 实时可用性计算
+  - [x] 4.9.1c 历史可用性趋势
+- [x] 4.9.2 ProxyStatusTracker（代理状态追踪）
+  - [x] 4.9.2a 代理运行时状态收集
+  - [x] 4.9.2b 状态快照与查询接口
 
 ### 4.10 数据管理服务
-- [ ] 4.10.1 DatabaseBackupService（数据库备份服务）
-  - [ ] 4.10.1a pg_dump 导出实现
-  - [ ] 4.10.1b pg_restore 导入实现
-  - [ ] 4.10.1c 临时文件管理
-  - [ ] 4.10.1d 备份锁（防并发）
-- [ ] 4.10.2 LogCleanupService（日志清理服务）
-  - [ ] 4.10.2a 定时清理调度器
-  - [ ] 4.10.2b 分批删除策略
-  - [ ] 4.10.2c 清理队列管理
-- [ ] 4.10.3 LogLevelService（日志级别管理）
-  - [ ] 4.10.3a 运行时日志级别查询
-  - [ ] 4.10.3b 运行时日志级别切换（无需重启）
+- [x] 4.10.1 DatabaseBackupService（数据库备份服务）
+  - [x] 4.10.1a pg_dump 导出实现
+  - [x] 4.10.1b pg_restore 导入实现
+  - [x] 4.10.1c 临时文件管理
+  - [x] 4.10.1d 备份锁（防并发）
+- [x] 4.10.2 LogCleanupService（日志清理服务）
+  - [x] 4.10.2a 定时清理调度器
+  - [x] 4.10.2b 分批删除策略
+  - [x] 4.10.2c 清理队列管理
+- [x] 4.10.3 LogLevelService（日志级别管理）
+  - [x] 4.10.3a 运行时日志级别查询
+  - [x] 4.10.3b 运行时日志级别切换（无需重启）
   - [ ] 4.10.3c 日志级别持久化（可选）
 
 ### 4.11 请求过滤服务
-- [ ] 4.11.1 RequestFilterEngine（请求过滤引擎）
-  - [ ] 4.11.1a Header 过滤规则执行
-  - [ ] 4.11.1b Body JSON Path 过滤
-  - [ ] 4.11.1c 文本替换规则执行
-- [ ] 4.11.2 RequestFilterCache（过滤规则缓存）
+- [x] 4.11.1 RequestFilterEngine（请求过滤引擎）
+  - [x] 4.11.1a Header 过滤规则执行
+  - [x] 4.11.1b Body JSON Path 过滤
+  - [x] 4.11.1c 文本替换规则执行
+- [x] 4.11.2 RequestFilterCache（过滤规则缓存）
 
 ### 4.12 辅助服务
-- [ ] 4.12.1 AsyncTaskManager（异步任务管理器）
-- [ ] 4.12.2 EventEmitter（内部事件发射器）
-- [ ] 4.12.3 MessageExtractor（消息内容提取）
-- [ ] 4.12.4 UAParser（User-Agent 解析）
-- [ ] 4.12.5 ProviderChainFormatter（决策链格式化）
-  - [ ] 4.12.5a 决策链 JSON 解析
-  - [ ] 4.12.5b 多语言格式化输出
-- [ ] 4.12.6 SSEUtils（SSE 流式工具）
-  - [ ] 4.12.6a SSE 事件解析器
-  - [ ] 4.12.6b SSE 响应构建器
-  - [ ] 4.12.6c 流式数据缓冲管理
-- [ ] 4.12.7 CostCalculationUtils（成本计算工具）
-  - [ ] 4.12.7a Token 价格查询
-  - [ ] 4.12.7b 缓存命中折扣计算
-  - [ ] 4.12.7c 多币种转换
+- [x] 4.12.1 AsyncTaskManager（异步任务管理器）
+- [x] 4.12.2 EventEmitter（内部事件发射器）
+- [x] 4.12.3 MessageExtractor（消息内容提取）
+- [x] 4.12.4 UAParser（User-Agent 解析）
+- [x] 4.12.5 ProviderChainFormatter（决策链格式化）
+  - [x] 4.12.5a 决策链 JSON 解析
+  - [x] 4.12.5b 多语言格式化输出
+- [x] 4.12.6 SSEUtils（SSE 流式工具）
+  - [x] 4.12.6a SSE 事件解析器
+  - [x] 4.12.6b SSE 响应构建器
+  - [x] 4.12.6c 流式数据缓冲管理
+- [x] 4.12.7 CostCalculationUtils（成本计算工具）
+  - [x] 4.12.7a Token 价格查询
+  - [x] 4.12.7b 缓存命中折扣计算
+  - [x] 4.12.7c 多币种转换
 
 ### 4.13 MCP 客户端
-- [ ] 4.13.1 MinimaxClient（Minimax MCP 服务客户端）
-- [ ] 4.13.2 GlmClient（智谱 GLM MCP 客户端）
+- [x] 4.13.1 MinimaxClient（Minimax MCP 服务客户端）
+- [x] 4.13.2 GlmClient（智谱 GLM MCP 客户端）
 
 ### 4.14 供应商测试服务
-- [ ] 4.14.1 ProviderTestService（供应商测试服务）
-  - [ ] 4.14.1a 测试请求构建器
-  - [ ] 4.14.1b 测试超时控制
-  - [ ] 4.14.1c 测试结果聚合
-- [ ] 4.14.2 测试响应解析器
-  - [ ] 4.14.2a AnthropicParser（Anthropic 响应解析）
-  - [ ] 4.14.2b OpenAIParser（OpenAI 响应解析）
-  - [ ] 4.14.2c CodexParser（Codex 响应解析）
-  - [ ] 4.14.2d GeminiParser（Gemini 响应解析）
-- [ ] 4.14.3 测试验证器
-  - [ ] 4.14.3a HttpValidator（HTTP 响应验证）
-  - [ ] 4.14.3b ContentValidator（内容验证）
-- [ ] 4.14.4 SSECollector（SSE 流式响应收集）
+- [x] 4.14.1 ProviderTestService（供应商测试服务）
+  - [x] 4.14.1a 测试请求构建器
+  - [x] 4.14.1b 测试超时控制
+  - [x] 4.14.1c 测试结果聚合
+- [x] 4.14.2 测试响应解析器
+  - [x] 4.14.2a AnthropicParser（Anthropic 响应解析）
+  - [x] 4.14.2b OpenAIParser（OpenAI 响应解析）
+  - [x] 4.14.2c CodexParser（Codex 响应解析）
+  - [x] 4.14.2d GeminiParser（Gemini 响应解析）
+- [x] 4.14.3 测试验证器
+  - [x] 4.14.3a HttpValidator（HTTP 响应验证）
+  - [x] 4.14.3b ContentValidator（内容验证）
+- [x] 4.14.4 SSECollector（SSE 流式响应收集）
 
 ### 4.15 数据生成器服务（开发调试用）
-- [ ] 4.15.1 DataGenerator（模拟数据生成服务）
-  - [ ] 4.15.1a 用户数据生成（批量创建测试用户）
-  - [ ] 4.15.1b 使用日志数据生成（模拟请求记录）
-  - [ ] 4.15.1c 统计数据生成（填充历史统计）
-- [ ] 4.15.2 DataAnalyzer（数据分析器）
-  - [ ] 4.15.2a 现有数据分布分析
-  - [ ] 4.15.2b 生成参数推荐
+- [x] 4.15.1 DataGenerator（模拟数据生成服务）
+  - [x] 4.15.1a 用户数据生成（批量创建测试用户）
+  - [x] 4.15.1b 使用日志数据生成（模拟请求记录）
+  - [x] 4.15.1c 统计数据生成（填充历史统计）
+- [x] 4.15.2 DataAnalyzer（数据分析器）
+  - [x] 4.15.2a 现有数据分布分析
+  - [x] 4.15.2b 生成参数推荐
 
 ### 4.16 认证服务
-- [ ] 4.16.1 AuthService（认证服务）
-  - [ ] 4.16.1a Admin Token 验证
-  - [ ] 4.16.1b API Key 验证与用户关联
-  - [ ] 4.16.1c Web UI 登录权限检查
-- [ ] 4.16.2 SessionCookieManager（会话 Cookie 管理）
-  - [ ] 4.16.2a Cookie 创建与签名
-  - [ ] 4.16.2b Cookie 验证与解析
-  - [ ] 4.16.2c Secure Cookie 配置（HTTPS 环境）
-- [ ] 4.16.3 PermissionService（权限服务）
-  - [ ] 4.16.3a 用户角色权限检查
-  - [ ] 4.16.3b 字段级权限控制（用户可编辑字段）
+- [x] 4.16.1 AuthService（认证服务）
+  - [x] 4.16.1a Admin Token 验证
+  - [x] 4.16.1b API Key 验证与用户关联
+  - [x] 4.16.1c Web UI 登录权限检查
+- [x] 4.16.2 SessionCookieManager（会话 Cookie 管理）
+  - [x] 4.16.2a Cookie 创建与签名
+  - [x] 4.16.2b Cookie 验证与解析
+  - [x] 4.16.2c Secure Cookie 配置（HTTPS 环境）
+- [x] 4.16.3 PermissionService（权限服务）
+  - [x] 4.16.3a 用户角色权限检查
+  - [x] 4.16.3b 字段级权限控制（用户可编辑字段）
 
 ## 5. 后端代理管道（Proxy Pipeline）
 
