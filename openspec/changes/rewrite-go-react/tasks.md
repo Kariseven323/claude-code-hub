@@ -63,21 +63,21 @@
 - [x] 3.1.1 供应商基础结构与接口定义
 - [x] 3.1.2 供应商 Create/Update 实现
 - [x] 3.1.3 供应商 Get/List/Delete 实现
-- [ ] 3.1.4 供应商状态与熔断器查询
-- [ ] 3.1.5 供应商高级字段处理
-  - [ ] 3.1.5a preserveClientIp（客户端 IP 透传配置）
-  - [ ] 3.1.5b cacheTtlPreference（Cache TTL 偏好覆写）
-  - [ ] 3.1.5c codexInstructionsStrategy（Codex 指令策略：auto/force_official/keep_original）
-  - [ ] 3.1.5d mcpPassthroughType 与 mcpPassthroughUrl（MCP 透传配置）
+- [x] 3.1.4 供应商状态与熔断器查询
+- [x] 3.1.5 供应商高级字段处理
+  - [x] 3.1.5a preserveClientIp（客户端 IP 透传配置）
+  - [x] 3.1.5b cacheTtlPreference（Cache TTL 偏好覆写）
+  - [x] 3.1.5c codexInstructionsStrategy（Codex 指令策略：auto/force_official/keep_original）
+  - [x] 3.1.5d mcpPassthroughType 与 mcpPassthroughUrl（MCP 透传配置）
 
 ### 3.2 UserRepository（用户）
 - [x] 3.2.1 用户基础结构与接口定义
 - [x] 3.2.2 用户 Create/Update 实现
 - [x] 3.2.3 用户 Get/List/Delete 实现
 - [x] 3.2.4 用户限额查询与更新
-- [ ] 3.2.5 用户标签管理
-  - [ ] 3.2.5a 用户标签 CRUD（tags jsonb 字段）
-  - [ ] 3.2.5b 按标签筛选用户列表
+- [x] 3.2.5 用户标签管理
+  - [x] 3.2.5a 用户标签 CRUD（tags jsonb 字段）
+  - [x] 3.2.5b 按标签筛选用户列表
 
 ### 3.3 KeyRepository（密钥）
 - [x] 3.3.1 密钥基础结构与接口定义
@@ -91,47 +91,47 @@
 
 ### 3.4 MessageRepository（消息日志）
 - [x] 3.4.1 消息基础结构与接口定义
-- [ ] 3.4.2 消息 Create/BatchCreate 实现
-- [ ] 3.4.3 消息查询（按会话/用户筛选）
+- [x] 3.4.2 消息 Create/BatchCreate 实现
+- [x] 3.4.3 消息查询（按会话/用户筛选）
 
 ### 3.5 UsageLogRepository（使用日志）
-- [ ] 3.5.1 使用日志基础结构与接口定义
-- [ ] 3.5.2 使用日志 Create 实现
-- [ ] 3.5.3 使用日志分页查询（多条件筛选）
-- [ ] 3.5.4 使用日志聚合统计查询
+- [x] 3.5.1 使用日志基础结构与接口定义
+- [x] 3.5.2 使用日志 Create 实现
+- [x] 3.5.3 使用日志分页查询（多条件筛选）
+- [x] 3.5.4 使用日志聚合统计查询
 
 ### 3.6 StatisticsRepository（统计查询）
-- [ ] 3.6a 基础统计查询（总量、日统计）
-- [ ] 3.6b 时间序列统计
-  - [ ] 3.6b-i 小时级聚合查询
-  - [ ] 3.6b-ii 天级聚合查询
-  - [ ] 3.6b-iii 周级聚合查询
-- [ ] 3.6c 多维度统计
-  - [ ] 3.6c-i 按用户维度统计
-  - [ ] 3.6c-ii 按供应商维度统计
-  - [ ] 3.6c-iii 按模型维度统计
+- [x] 3.6a 基础统计查询（总量、日统计）
+- [x] 3.6b 时间序列统计
+  - [x] 3.6b-i 小时级聚合查询
+  - [x] 3.6b-ii 天级聚合查询
+  - [x] 3.6b-iii 周级聚合查询
+- [x] 3.6c 多维度统计
+  - [x] 3.6c-i 按用户维度统计
+  - [x] 3.6c-ii 按供应商维度统计
+  - [x] 3.6c-iii 按模型维度统计
 
 ### 3.7 LeaderboardRepository（排行榜）
-- [ ] 3.7.1 排行榜接口定义
-- [ ] 3.7.2 请求数排行查询
-- [ ] 3.7.3 Token 消耗排行查询
-- [ ] 3.7.4 成本排行查询
+- [x] 3.7.1 排行榜接口定义
+- [x] 3.7.2 请求数排行查询
+- [x] 3.7.3 Token 消耗排行查询
+- [x] 3.7.4 成本排行查询
 
 ### 3.8 其他 Repository
-- [ ] 3.8.1 ErrorRuleRepository（错误规则 CRUD）
-- [ ] 3.8.2 ModelPriceRepository（模型价格 CRUD + 批量同步）
-- [ ] 3.8.3 SystemConfigRepository（系统配置 Get/Set）
-  - [ ] 3.8.3a 站点配置（siteTitle、currencyDisplay、billingModelSource）
-  - [ ] 3.8.3b 日志清理配置（enableAutoCleanup、cleanupRetentionDays、cleanupSchedule、cleanupBatchSize）
-  - [ ] 3.8.3c HTTP/2 配置（enableHttp2）
-  - [ ] 3.8.3d 客户端版本检查配置（enableClientVersionCheck）
-  - [ ] 3.8.3e 错误显示配置（verboseProviderError）
-- [ ] 3.8.4 NotificationRepository（通知 CRUD）
-- [ ] 3.8.5 ClientVersionRepository（客户端版本 CRUD + 统计）
-- [ ] 3.8.6 SensitiveWordRepository（敏感词 CRUD）
-- [ ] 3.8.7 ActivityStreamRepository（活动流查询）
-- [ ] 3.8.8 RequestFilterRepository（请求过滤规则 CRUD）
-- [ ] 3.8.9 OverviewRepository（首页概览数据聚合）
+- [x] 3.8.1 ErrorRuleRepository（错误规则 CRUD）
+- [x] 3.8.2 ModelPriceRepository（模型价格 CRUD + 批量同步）
+- [x] 3.8.3 SystemConfigRepository（系统配置 Get/Set）
+  - [x] 3.8.3a 站点配置（siteTitle、currencyDisplay、billingModelSource）
+  - [x] 3.8.3b 日志清理配置（enableAutoCleanup、cleanupRetentionDays、cleanupSchedule、cleanupBatchSize）
+  - [x] 3.8.3c HTTP/2 配置（enableHttp2）
+  - [x] 3.8.3d 客户端版本检查配置（enableClientVersionCheck）
+  - [x] 3.8.3e 错误显示配置（verboseProviderError）
+- [x] 3.8.4 NotificationRepository（通知 CRUD）
+- [x] 3.8.5 ClientVersionRepository（客户端版本 CRUD + 统计）
+- [x] 3.8.6 SensitiveWordRepository（敏感词 CRUD）
+- [x] 3.8.7 ActivityStreamRepository（活动流查询）
+- [x] 3.8.8 RequestFilterRepository（请求过滤规则 CRUD）
+- [x] 3.8.9 OverviewRepository（首页概览数据聚合）
 
 ## 4. 后端业务逻辑层（Service）
 
