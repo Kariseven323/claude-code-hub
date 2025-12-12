@@ -45,11 +45,11 @@
   - [x] 2.3.3b 会话管理 Lua 脚本
   - [x] 2.3.3c 熔断器 Lua 脚本
   - [x] 2.3.3d Lua 脚本外部化（从内嵌字符串抽取为独立 .lua 文件）
-- [ ] 2.3.4 实现 Redis 缓存层
-  - [ ] 2.3.4a LeaderboardCache（排行榜缓存）
-  - [ ] 2.3.4b SessionStatsCache（会话统计缓存）
-  - [ ] 2.3.4c CircuitBreakerConfig（熔断器配置缓存）
-  - [ ] 2.3.4d CircuitBreakerState（熔断器状态缓存）
+- [x] 2.3.4 实现 Redis 缓存层
+  - [x] 2.3.4a LeaderboardCache（排行榜缓存）
+  - [x] 2.3.4b SessionStatsCache（会话统计缓存）
+  - [x] 2.3.4c CircuitBreakerConfig（熔断器配置缓存）
+  - [x] 2.3.4d CircuitBreakerState（熔断器状态缓存）
 
 ### 2.4 日志
 - [x] 2.4.1 配置 Zap 日志
