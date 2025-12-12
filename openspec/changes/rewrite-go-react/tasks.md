@@ -62,7 +62,7 @@
 ### 3.1 ProviderRepository（供应商）
 - [x] 3.1.1 供应商基础结构与接口定义
 - [x] 3.1.2 供应商 Create/Update 实现
-- [ ] 3.1.3 供应商 Get/List/Delete 实现
+- [x] 3.1.3 供应商 Get/List/Delete 实现
 - [ ] 3.1.4 供应商状态与熔断器查询
 - [ ] 3.1.5 供应商高级字段处理
   - [ ] 3.1.5a preserveClientIp（客户端 IP 透传配置）
@@ -80,14 +80,14 @@
   - [ ] 3.2.5b 按标签筛选用户列表
 
 ### 3.3 KeyRepository（密钥）
-- [ ] 3.3.1 密钥基础结构与接口定义
-- [ ] 3.3.2 密钥 Create/Update 实现
-- [ ] 3.3.3 密钥 Get/List/Delete 实现
-- [ ] 3.3.4 密钥认证查询（按 API Key 查找）
-- [ ] 3.3.5 密钥高级字段处理
-  - [ ] 3.3.5a cacheTtlPreference（Cache TTL 偏好覆写）
-  - [ ] 3.3.5b providerGroup（供应商分组覆写）
-  - [ ] 3.3.5c dailyResetMode 与 dailyResetTime（每日限额重置模式）
+- [x] 3.3.1 密钥基础结构与接口定义
+- [x] 3.3.2 密钥 Create/Update 实现
+- [x] 3.3.3 密钥 Get/List/Delete 实现
+- [x] 3.3.4 密钥认证查询（按 API Key 查找）
+- [x] 3.3.5 密钥高级字段处理
+  - [x] 3.3.5a cacheTtlPreference（Cache TTL 偏好覆写）
+  - [x] 3.3.5b providerGroup（供应商分组覆写）
+  - [x] 3.3.5c dailyResetMode 与 dailyResetTime（每日限额重置模式）
 
 ### 3.4 MessageRepository（消息日志）
 - [x] 3.4.1 消息基础结构与接口定义
