@@ -1,69 +1,97 @@
-# 对比：`/api/admin/database/status`（Next.js） vs `KarisCode` 重写
+# `claude-to-openai` 对比：claude-code-hub (TS) vs `KarisCode` (Go)
 
-## 结论
+本文聚焦对比以下 2 个 TS 文件在 `KarisCode/` 内的“重写”是否属于 **1:1 复刻的完整实现**，并按“语义一致 / 语义不一致”逐条列出差异点。
 
-`KarisCode` 已对 `GET /api/admin/database/status` 做到**语义 1:1 对齐**（以主项目 `src/app/api/admin/database/status/route.ts` 为准）。
+## 对比范围与映射关系
 
-- 主项目：`src/app/api/admin/database/status/route.ts`
-- KarisCode：`KarisCode/backend/internal/handler/admin/database_status.go` + `KarisCode/backend/internal/handler/admin/routes.go`
+TS 侧（本仓库）：
+- `src/app/v1/_lib/converters/claude-to-openai/index.ts`
+- `src/app/v1/_lib/converters/claude-to-openai/request.ts`
 
----
+KarisCode 侧（Go）：
+- `KarisCode/backend/internal/service/converter/registry.go`（`RegisterDefaults()` 中的注册逻辑，对应 `index.ts`）
+- `KarisCode/backend/internal/service/converter/claude_to_openai_request.go`（对应 `request.ts`）
 
-## 对应关系（Mapping）
+（补充：KarisCode 侧默认注册确实在运行时被使用：`KarisCode/backend/internal/handler/proxy/routes.go` 调用 `converter.NewDefaultRegistry()`。）
 
-### 主项目（TypeScript / Next.js）
+## 结论（是否 1:1 复刻）
 
-- 路由文件：`src/app/api/admin/database/status/route.ts`
-- HTTP：`GET /api/admin/database/status`
-- 依赖：
-  - 管理员鉴权：`getSession()`（cookie session）并要求 `session.user.role === "admin"`（`route.ts#L20-L24`）
-  - DSN 配置：`getDatabaseConfig()`（`src/lib/database-backup/db-config.ts`）
-  - 连接探测：`checkDatabaseConnection()`（`src/lib/database-backup/docker-executor.ts`）
-  - 详情查询：`getDatabaseInfo()`（`src/lib/database-backup/docker-executor.ts`）
-  - 返回模型：`DatabaseStatus`（`src/types/database-backup.ts`）
+**不是严格的 1:1 复刻。**
 
-### KarisCode（Go / Gin）
-
-- HTTP handler：`KarisCode/backend/internal/handler/admin/database_status.go`
-  - 路由：`GET /api/admin/database/status`（注册于 `KarisCode/backend/internal/handler/admin/routes.go`）
-  - 管理员鉴权：cookie `auth-token` → `AuthService.ValidateKey()` → role=admin
-  - DSN 解析：按 TS `parseDatabaseDSN()` 语义解析 host/port/user/password/database
-  - 连接探测：`pg_isready`
-  - 信息查询：`psql -t -A -c <query>` 并按 TS 规则解析输出
-
-- 共享类型/服务（备份相关复用）：`KarisCode/backend/internal/service/datamanagement/database_backup_service.go`
+整体上 Go 侧 `TransformClaudeRequestToOpenAI` 明显是按 TS 逻辑“逐段镜像”实现的；但在若干输入边界/异常路径上，行为与 TS 不完全一致，因此不能称为“1:1 语义等价”的完整实现。
 
 ---
 
-## 语义一致（Semantically Equivalent）
+## 1) `index.ts`（转换器注册）对比
 
-以下部分可以认为是“语义上对齐/等价”的实现（不代表行为逐字节一致）：
+对应关系：
+- TS：`src/app/v1/_lib/converters/claude-to-openai/index.ts`
+- Go：`KarisCode/backend/internal/service/converter/registry.go` 的 `RegisterDefaults()`
 
-1. **返回结构字段对齐**
-   - TS：`DatabaseStatus` 字段为 `isAvailable/containerName/databaseName/databaseSize/tableCount/postgresVersion/error?`（`src/types/database-backup.ts`）
-   - Go：`DatabaseStatus` JSON tag 与字段含义一致（`database_backup_service.go#L25-L34`）
+### 语义一致
+- **注册方向一致**：都注册 `claude` → `openai-compatible` 的 request transformer。
+- **响应转换器同向绑定**：都为该方向绑定了 stream/non-stream 的响应转换器（名字与职责对应）。
 
-2. **连接探测使用 `pg_isready`**
-   - TS：`checkDatabaseConnection()` spawn `pg_isready ...`，以退出码是否为 0 判定可用（`src/lib/database-backup/docker-executor.ts#L473-L505`）
-   - Go：`CheckDatabaseConnection()` 使用 `pg_isready ...`，以命令是否成功运行判定可用（`database_backup_service.go#L79-L103`）
-
-3. **数据库信息查询 SQL 目标一致**
-   - TS：`getDatabaseInfo()` 查询 `pg_database_size/current_database()`、public schema 下 base table 数量、`version()`（`src/lib/database-backup/docker-executor.ts`）
-   - Go：`GetStatus()` 使用同样的 SQL 结构获取 size/table_count/version（`database_backup_service.go#L136-L156`）
-
-4. **“连接不可用”不被当作“路由级错误”**
-   - TS：连接不可用时仍返回 HTTP 200 + `isAvailable:false`（`route.ts#L32-L50`）
-   - Go：`GET /api/admin/database/status` 连接不可用时同样返回 HTTP 200 + `isAvailable:false`，并使用相同的中文 `error` 文案
-   - 这两者的意图一致：把“数据库不可用”当作状态信息而不是异常
+### 语义不一致
+- **注册触发机制不同**：
+  - TS：依赖模块 import 副作用（加载 `index.ts` 即注册到全局 `defaultRegistry`）。
+  - Go：依赖显式调用 `RegisterDefaults()` / `NewDefaultRegistry()`。
+- **代码复用形态不同**：
+  - TS：`index.ts` 从 `../openai-to-claude/response` 复用 `transformClaude*ToOpenAI`。
+  - Go：直接使用 `claude_to_openai_response.go` 内实现的 `TransformClaude*ToOpenAI`（语义是否等价取决于 response 文件；但这已超出本文 request/index 的对比范围）。
 
 ---
 
-## 语义不一致（Semantically Different / Missing）
+## 2) `request.ts`（Claude → OpenAI ChatCompletions 请求转换）对比
 
-（A/B/C/D/F 已通过补全 handler 与调整实现对齐，不再列为差异项。）
+对应关系：
+- TS：`src/app/v1/_lib/converters/claude-to-openai/request.ts` 的 `transformClaudeRequestToOpenAI()`
+- Go：`KarisCode/backend/internal/service/converter/claude_to_openai_request.go` 的 `TransformClaudeRequestToOpenAI()`
 
-### E. “Unauthorized” 响应体类型与前端使用方式冲突（主项目自身问题）
+### 语义一致（核心路径）
+- **顶层字段**：输出都以入参 `model` 为准，并显式写入 `stream`（忽略原请求体内可能的 `model/stream` 字段）。
+- **`system` → 首条 system message**：
+  - `system: string` 直接成为 `{"role":"system","content":...}`
+  - `system: [{type:"text",text:"..."}...]` 拼接所有 `text`（无分隔符）后写入 system message
+- **`messages[]` 基础映射**：
+  - `content: string` → OpenAI `messages[]` 的 `content: string`
+  - `content: []`（block 数组）→ 收集 `text`/`image` 转成 OpenAI 的多模态 `content` 数组
+- **`image` block**：
+  - `source.type=base64` → `data:{media_type};base64,{data}`
+  - `source.type=url` → 直接使用 `url`
+  - 都设置 `detail: "auto"`
+- **`tool_use` block**：
+  - 在遇到 `tool_use` 前会先 flush 已累计的 `text/image` contentParts 为一条消息
+  - 生成一条 `role:"assistant"` 且 `content:null` 的消息，并填充 `tool_calls:[{id,type:"function",function:{name,arguments}}]`
+- **`tool_result` block**：
+  - 在遇到 `tool_result` 前会先 flush 已累计的 `text/image` contentParts 为一条消息
+  - 生成一条 `role:"tool"` 消息，填充 `tool_call_id` 与 `content`
+- **`tools[]` → OpenAI `tools[]`**：
+  - `input_schema` → `function.parameters`
+  - 跳过 `type === "web_search_20250305"` 的 Claude web search 工具
+- **`tool_choice` 映射**：
+  - `auto` → `"auto"`
+  - `any` → `"required"`
+  - `tool + name` → `{type:"function", function:{name}}`
+- **透传标量**：`max_tokens / temperature / top_p` 在常规 JSON 输入下行为一致（注意差异点见下节）。
+- **保持 TS 的既有“限制/瑕疵”**：只要出现过 `tool_use` 或 `tool_result`，循环结束后剩余的 `contentParts` 不会再被 append（可能导致“工具块后还有文本/图片”的尾部内容丢失）；Go 侧复刻了这一点。
 
-- TS：未授权时返回纯文本 `new Response("Unauthorized", { status: 401 })`（`route.ts#L21-L24`），不是 JSON。
-- 现有 UI（`src/app/[locale]/settings/data/_components/database-status.tsx`）在 `!response.ok` 时会 `await response.json()`（这在 401 文本时会抛异常），所以错误显示会变得不可控。
-- KarisCode 为保持 1:1，对该 endpoint 同样返回纯文本 `"Unauthorized"`。
+### 语义不一致（边界/异常路径）
+- **`tools` 字段“空数组 vs 缺省”**：
+  - TS：只要 `req.tools` 非空进入转换，就会先 `output.tools = []`，即便全部被 `continue`（例如只有 `web_search_20250305`）最终也会输出 `tools: []`。
+  - Go：只有在 `outTools` 最终 `len(outTools) > 0` 时才写入 `output["tools"]`；否则该字段缺省。
+- **`tool_result.content` 为数组且元素是 object 时的字符串化差异**：
+  - TS：对“非 text 对象”走 `String(item)`，通常得到 `"[object Object]"`（或 `"undefined"` 等 JS 字符串化结果）。
+  - Go：对“非 text 对象”走 `jsonString(item)`，得到 JSON（例如 `{"foo":"bar"}`），且 marshal 失败会变成空串。
+- **`tool_result.content` 为非 string / 非数组时的处理差异**：
+  - TS：不会进入任何分支，`outputStr` 保持 `""`。
+  - Go：会走 `default` 分支并用 `toString()`（最终 `jsonString(v)`）生成字符串。
+- **`tool_use.input` 非 object（map）时的处理差异**：
+  - TS：`JSON.stringify(part.input || {})`，若 `input` 是 truthy 的非对象（如数字/数组），会 stringify 成 `"123"` / `"[...]"`；若是 `0/""/false` 等 falsy，会退化成 `"{}"`。
+  - Go：只接受 `map[string]any`；否则一律退化为 `"{}"`。
+- **`temperature/top_p` 的数值类型兼容性差异**：
+  - TS：只要不是 `undefined` 就会透传（包含 `0`、整数等）。
+  - Go：仅在底层类型为 `float64` 时透传（JSON decode 通常是 `float64`，但若上层构造为 `int` 则会丢失该字段）。
+- **JSON 序列化失败的行为差异**（对 arguments/content 影响）：
+  - TS：`JSON.stringify(...)` 可能抛异常；在 TS 项目中该异常会被 registry 捕获并回退“透传原始请求体”（导致上游收到 Claude 格式而不是 OpenAI 格式）。
+  - Go：`json.Marshal` 失败时返回空字符串，不会触发 panic；因此会继续输出“已转换但 arguments/content 为空串”的 OpenAI 请求形态。
