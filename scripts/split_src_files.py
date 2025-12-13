@@ -55,7 +55,7 @@ def generate_analysis_requests(directories: dict[str, list[str]]) -> list[str]:
             file_list = '\n'.join(chunk)
             request = f"""请你分析当前项目：
 {file_list}
-这些文件在KarisCode文件夹内的重写是否完整实现，要求1:1复刻的完整实现"""
+这些文件在KarisCode文件夹内的重写是否1:1复刻的完整实现，然后更新文档docs/contrast.md，详细列出语义一致的部分和语义不一致的部分"""
             requests.append(request)
 
     return requests
